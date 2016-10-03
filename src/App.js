@@ -12,11 +12,10 @@ class App extends Component {
     }
   }
   searchPlayer = (position, playerName) => {
-    console.log(position)
-    console.log(playerName)
     var players = []
     PlayerModel.searchByPosition(position).then((res)=> {
       var foundPlayers = res.data.Players
+      console.log(foundPlayers)
       foundPlayers.forEach(function(value){
         if(value.lname == playerName){
           players.push(value)

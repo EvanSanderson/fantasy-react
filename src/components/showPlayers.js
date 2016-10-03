@@ -3,21 +3,9 @@ import Player from './Player';
 
 class ShowPlayers extends Component {
 // cant have a return inside of a return! fix this
-  renderPlayers = () => {
-    console.log(this.props.players);
-    this.props.players.map((player)=>{
-      console.log(player.lname);
-      console.log(player.fname);
-      return (
-        <div>
-        <p> it is rendering plaers </p>
-        <Player
-        playerLName = {player.lname}
-        playerFName = {player.fname}
-        />
-        </div>
-      )
-    })
+  renderPlayers = (key) => {
+    console.log("rendering players")
+    return <Player key={key} index={key} playerFName={this.props.players[key].fname} playerLName={this.props.players[key].lname} team={this.props.players[key].team} />
   }
   renderBlank = () => {
     return <p> Im rendering nothing! </p>
@@ -25,8 +13,8 @@ class ShowPlayers extends Component {
   render(){
     return(
       <div>
-        {this.props.viewPlayers ? this.renderPlayers() : this.renderBlank() }
-      </div>
+        {Object.keys(this.props.players).map(this.renderPlayers)}
+        </div>
     )
   }
 }
